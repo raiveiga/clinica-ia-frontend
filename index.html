@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IA Clínica Pediátrica</title>
+  <style>
+    body { font-family: Arial; padding: 20px; max-width: 600px; margin: auto; }
+    textarea { width: 100%; height: 120px; padding: 10px; font-size: 1em; }
+    button { padding: 10px 20px; font-size: 1em; margin-top: 10px; }
+    .resposta { margin-top: 20px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h2>IA Clínica Pediátrica</h2>
+  <textarea id="sintomas" placeholder="Digite os sintomas aqui..."></textarea>
+  <button onclick="enviar()">Enviar</button>
+  <div class="resposta" id="resposta"></div>
+
+  <script>
+    async function enviar() {
+      const sintomas = document.getElementById('sintomas').value;
+      const respostaDiv = document.getElementById('resposta');
+      respostaDiv.innerText = 'Analisando...';
+
+      const res = await fetch('https://SEU-BACKEND.onrender.com/avaliar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sintomas })
+      });
+
+      const data = await res.json();
+      respostaDiv.innerText = data.resposta;
+    }
+  </script>
+</body>
+</html>
