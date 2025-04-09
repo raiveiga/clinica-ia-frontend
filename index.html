@@ -23,7 +23,7 @@
       const respostaDiv = document.getElementById('resposta');
       respostaDiv.innerText = 'Analisando...';
 
-      const res = await fetch('https://clinica-ia-backend.onrender.com', {
+      const res = await fetch('https://clinica-ia-backend.onrender.com/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sintomas })
